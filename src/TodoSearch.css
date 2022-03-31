@@ -1,0 +1,23 @@
+.TodoSearch {
+  display: flex;
+  justify-content: right;
+}
+
+.TodoSearch__bar {
+  padding-left: 1rem;
+  width: 65%;
+  height: 4.6rem;
+  font-size: 2rem;
+  color: #442f7e;
+  border-radius: 0.8rem;
+  border: none;
+  outline: none;
+}
+
+.TodoSearch__bar::placeholder {
+  color: #442f7e;
+}
+
+p {
+  font-size: 2.4rem;
+}
