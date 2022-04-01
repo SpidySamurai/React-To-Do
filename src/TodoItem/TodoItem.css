@@ -35,17 +35,17 @@
 }
 
 .Icon__check {
-  background-image: url(./assets/icons/icon_check.svg);
+  background-image: url(../assets/icons/icon_check.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
 .Icon__check--active {
-  background-image: url(./assets/icons/icon_check--active.svg);
+  background-image: url(../assets/icons/icon_check--active.svg);
   color: #4caf50;
 }
 
 .Icon__delete {
-  background-image: url(./assets/icons/icon_trash_can.svg);
+  background-image: url(../assets/icons/icon_trash_can.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
