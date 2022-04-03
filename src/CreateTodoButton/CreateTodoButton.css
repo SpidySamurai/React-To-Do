@@ -1,16 +1,6 @@
 .CreateTodoButton {
   position: fixed;
-  bottom: 5vh;
-
-  display: flex;
-  justify-content: flex-end;
-
-  width: 100%;
-  min-width: 320px;
-  max-width: 425px;
-}
-
-.CreateTodoButton button {
+  bottom: 2vh;
   margin-right: 2rem;
 
   display: flex;
@@ -31,8 +21,26 @@
 
   transform: rotate(0);
   transition: 0.3s ease;
+
+  z-index: 1;
 }
 
-.CreateTodoButton button:hover {
+.CreateTodoButton:hover {
   transform: rotate(224deg);
+}
+
+@media (min-width: 320px) {
+  .CreateTodoButton {
+    margin-left: 20rem;
+  }
+}
+@media (min-width: 375px) {
+  .CreateTodoButton {
+    margin-left: 25.5rem;
+  }
+}
+@media (min-width: 425px) {
+  .CreateTodoButton {
+    margin-left: 30.5rem;
+  }
 }
