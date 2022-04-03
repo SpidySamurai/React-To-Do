@@ -17,6 +17,9 @@ function useLocalStorage(itemName, initialValue) {
             { text: "TODO test 2", completed: false },
             { text: "TODO test 3", completed: false },
             { text: "TODO test 4", completed: false },
+            { text: "TODO test 5", completed: false },
+            { text: "TODO test 6", completed: false },
+            { text: "TODO test 7", completed: false },
           ];
           localStorage.setItem(itemName, JSON.stringify(defaultTodos));
           parsedItem = defaultTodos;
