@@ -3,3 +3,9 @@ ul {
   padding: 0 0 56px 0;
   list-style: none;
 }
+
+p {
+  margin-top: 1.6rem;
+  /* font-size: 2rem; */
+  color: white;
+}
