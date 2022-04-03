@@ -7,12 +7,9 @@ function CreateTodoButton(props) {
   };
 
   return (
-    <button
-      className="CreateTodoButton"
-      onClick={() => onClickButton("Abrir modal")}
-    >
-      +
-    </button>
+    <div className="CreateTodoButton">
+      <button onClick={() => onClickButton("Abrir modal")}>+</button>
+    </div>
   );
 }
 
