@@ -25,8 +25,10 @@ function useTodos() {
   const [searchValue, setSearchValue] = React.useState("");
   const [openModal, setOpenModal] = React.useState(false);
 
-  const completedTodosText = todos.filter((todo) => todo.completed).length;
-  const totalTodos = todos.length;
+  const completedTodosText = completedTodos.filter(
+    (todo) => todo.completed
+  ).length;
+  const totalTodos = todos.length + completedTodos.length;
 
   let searchedTodos = [];
   let searchedCompletedTodos = [];
