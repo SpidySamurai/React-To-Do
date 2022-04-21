@@ -3,7 +3,7 @@ import React from "react";
 function useLocalStorage(itemName, initialValue) {
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  const [item, setItem] = React.useState(initialValue);
+  const [item, setItem] = React.useState([]);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -12,15 +12,7 @@ function useLocalStorage(itemName, initialValue) {
         let parsedItem;
 
         if (!localStorageItem || localStorageItem.length === 2) {
-          const defaultTodos = [
-            { text: "TODO test 1", completed: false },
-            { text: "TODO test 2", completed: false },
-            { text: "TODO test 3", completed: false },
-            { text: "TODO test 4", completed: false },
-            { text: "TODO test 5", completed: false },
-            { text: "TODO test 6", completed: false },
-            { text: "TODO test 7", completed: false },
-          ];
+          const defaultTodos = initialValue;
           localStorage.setItem(itemName, JSON.stringify(defaultTodos));
           parsedItem = defaultTodos;
         } else {

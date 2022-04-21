@@ -4,30 +4,29 @@ import { TodoHeader } from "../TodoHeader";
 import { TodoSearch } from "../TodoSearch";
 import { TodoCounter } from "../TodoCounter";
 import { TodoList } from "../TodoList";
+import { TodoCompletedList } from "../TodoCompletedList";
+import { TodoLoading } from "../TodoLoading";
+import { TodoError } from "../TodoError";
+import { TodoEmpty } from "../TodoEmpty";
 import { TodoItem } from "../TodoItem";
 import { CreateTodoButton } from "../CreateTodoButton";
 import { TodoForm } from "../TodoForm";
 import { Modal } from "../Modal";
 
-// const defaultTodos = [
-//   { text: "TODO test 1", completed: false },
-//   { text: "TODO test 2", completed: false },
-//   { text: "TODO test 3", completed: false },
-//   { text: "TODO test 4", completed: false },
-// ];
-
 function App() {
   const {
     error,
     loading,
+    empty,
     searchedTodos,
+    searchedCompletedTodos,
     toggleCompleteTodo,
     deleteTodo,
     addTodo,
     openModal,
     setOpenModal,
     totalTodos,
-    completedTodos,
+    completedTodosText,
     searchValue,
     setSearchValue,
   } = useTodos();
@@ -38,33 +37,52 @@ function App() {
         <TodoHeader>
           <TodoCounter
             totalTodos={totalTodos}
-            completedTodos={completedTodos}
+            completedTodosText={completedTodosText}
           />
           <TodoSearch
             searchValue={searchValue}
             setSearchValue={setSearchValue}
           />
         </TodoHeader>
-        <TodoList>
-          {error && <p>Hubo un error...</p>}
-          {loading && <p>Estamos cargando las tareas...</p>}
-          {!loading && !searchedTodos.lenght && (
-            <p>Crea tu primera tarea... o borra estas... no sé!</p>
-          )}
-          {searchedTodos.map((todo) => (
+        <TodoList
+          error={error}
+          loading={loading}
+          searchedTodos={searchedTodos}
+          onError={() => <TodoError />}
+          onLoading={() => <TodoLoading />}
+          onEmptyTodos={() => <TodoEmpty />}
+          render={(todo) => (
             <TodoItem
               key={todo.text}
               text={todo.text}
               completed={todo.completed}
               onToggleComplete={() => {
-                toggleCompleteTodo(todo.text);
+                toggleCompleteTodo(todo.text, todo.completed);
               }}
               onDelete={() => {
-                deleteTodo(todo.text);
+                deleteTodo(todo.text, todo.completed);
               }}
             />
-          ))}
-        </TodoList>
+          )}
+        ></TodoList>
+        {searchedCompletedTodos && (
+          <TodoCompletedList
+            searchedCompletedTodos={searchedCompletedTodos}
+            render={(todo) => (
+              <TodoItem
+                key={todo.text}
+                text={todo.text}
+                completed={todo.completed}
+                onToggleComplete={() => {
+                  toggleCompleteTodo(todo.text, todo.completed);
+                }}
+                onDelete={() => {
+                  deleteTodo(todo.text, todo.completed);
+                }}
+              />
+            )}
+          ></TodoCompletedList>
+        )}
         {openModal && (
           <Modal>
             <TodoForm addTodo={addTodo} setOpenModal={setOpenModal} />
