@@ -34,7 +34,7 @@ function App() {
   return (
     <React.Fragment>
       <main>
-        <TodoHeader>
+        <TodoHeader loading={loading}>
           <TodoCounter
             totalTodos={totalTodos}
             completedTodosText={completedTodosText}
