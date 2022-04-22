@@ -48,10 +48,30 @@ function App() {
           error={error}
           loading={loading}
           searchedTodos={searchedTodos}
+          totalCompleteTodos={searchedCompletedTodos.length}
+          searchText={searchValue}
+          totalTodos={totalTodos}
           onError={() => <TodoError />}
           onLoading={() => <TodoLoading />}
           onEmptyTodos={() => <TodoEmpty />}
-          render={(todo) => (
+          onEmptySearchResults={(searchText) => (
+            <p>There is no results for {searchText}</p>
+          )}
+          // render={(todo) => (
+          //   <TodoItem
+          //     key={todo.text}
+          //     text={todo.text}
+          //     completed={todo.completed}
+          //     onToggleComplete={() => {
+          //       toggleCompleteTodo(todo.text, todo.completed);
+          //     }}
+          //     onDelete={() => {
+          //       deleteTodo(todo.text, todo.completed);
+          //     }}
+          //   />
+          // )}
+        >
+          {(todo) => (
             <TodoItem
               key={todo.text}
               text={todo.text}
@@ -64,7 +84,7 @@ function App() {
               }}
             />
           )}
-        ></TodoList>
+        </TodoList>
         {searchedCompletedTodos && (
           <TodoCompletedList
             searchedCompletedTodos={searchedCompletedTodos}
