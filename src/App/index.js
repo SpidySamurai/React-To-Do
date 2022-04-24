@@ -12,7 +12,7 @@ import { TodoItem } from "../TodoItem";
 import { CreateTodoButton } from "../CreateTodoButton";
 import { TodoForm } from "../TodoForm";
 import { Modal } from "../Modal";
-import { ChangeAlertWithStorageListener } from "../ChangeAlert";
+import { ChangeAlert } from "../ChangeAlert";
 
 function App() {
   const {
@@ -47,10 +47,10 @@ function App() {
             setSearchValue={setSearchValue}
           />
         </TodoHeader>
-        <ChangeAlertWithStorageListener
+        <ChangeAlert
           sincronizeTodos={sincronizeTodos}
           sincronizeCompletedTodos={sincronizeCompletedTodos}
-        ></ChangeAlertWithStorageListener>
+        ></ChangeAlert>
         <TodoList
           error={error}
           loading={loading}
