@@ -8,12 +8,13 @@ function TodoList(props) {
         {props.error && props.onError()}
         {props.loading && props.onLoading()}
         {/* {!props.loading && !props.searchedTodos.length && props.onEmptyTodos} */}
-        {props.totalTodos &&
+        {!!props.totalTodos &&
           !props.searchedTodos.length &&
           !props.totalCompleteTodos &&
           props.onEmptySearchResults(props.searchText)}
         {/* {props.searchedTodos.map(props.render)} */}
-        {props.searchedTodos.map(props.render || props.children)}
+        {!props.loading &&
+          props.searchedTodos.map(props.render || props.children)}
       </ul>
     </section>
   );
