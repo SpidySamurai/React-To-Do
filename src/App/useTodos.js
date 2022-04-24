@@ -7,6 +7,7 @@ function useTodos() {
   const {
     item: todos,
     saveItem: saveTodos,
+    sincronizeItem: sincronizeTodos,
     loading,
     error,
   } = useLocalStorage("TODOS_V1", [
@@ -18,10 +19,13 @@ function useTodos() {
     { text: "TODO test 6", completed: false },
     { text: "TODO test 7", completed: false },
   ]);
-  const { item: completedTodos, saveItem: saveCompletedTodos } =
-    useLocalStorage("TODOS_COMPLETED_V1", [
-      { text: "TODO test 8", completed: true },
-    ]);
+  const {
+    item: completedTodos,
+    saveItem: saveCompletedTodos,
+    sincronizeItem: sincronizeCompletedTodos,
+  } = useLocalStorage("TODOS_COMPLETED_V1", [
+    { text: "TODO test 8", completed: true },
+  ]);
   const [searchValue, setSearchValue] = React.useState("");
   const [openModal, setOpenModal] = React.useState(false);
 
@@ -116,6 +120,8 @@ function useTodos() {
     completedTodosText,
     searchValue,
     setSearchValue,
+    sincronizeTodos,
+    sincronizeCompletedTodos,
   };
 }
 
