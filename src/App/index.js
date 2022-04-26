@@ -50,7 +50,7 @@ function App() {
         <ChangeAlert
           sincronizeTodos={sincronizeTodos}
           sincronizeCompletedTodos={sincronizeCompletedTodos}
-        ></ChangeAlert>
+        />
         <TodoList
           error={error}
           loading={loading}
@@ -64,19 +64,6 @@ function App() {
           onEmptySearchResults={(searchText) => (
             <p>There is no results for {searchText}</p>
           )}
-          // render={(todo) => (
-          //   <TodoItem
-          //     key={todo.text}
-          //     text={todo.text}
-          //     completed={todo.completed}
-          //     onToggleComplete={() => {
-          //       toggleCompleteTodo(todo.text, todo.completed);
-          //     }}
-          //     onDelete={() => {
-          //       deleteTodo(todo.text, todo.completed);
-          //     }}
-          //   />
-          // )}
         >
           {(todo) => (
             <TodoItem
@@ -109,7 +96,7 @@ function App() {
                 }}
               />
             )}
-          ></TodoCompletedList>
+          />
         )}
         {openModal && (
           <Modal>
