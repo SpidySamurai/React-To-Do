@@ -1,0 +1,51 @@
+.TodoItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+}
+
+.TodoItem__text {
+  width: 80%;
+  padding: 2.4rem 1rem 2.4rem 1rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #442f7e;
+  line-height: 24px;
+  font-weight: 400;
+}
+.TodoItem__text--complete {
+  text-decoration: line-through;
+}
+
+.Icon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 4.2rem;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.Icon__check {
+  background-image: url(../../assets/icons/icon_check.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.Icon__check--active {
+  background-image: url(../../assets/icons/icon_check--active.svg);
+  color: #4caf50;
+}
+
+.Icon__delete {
+  background-image: url(../../assets/icons/icon_trash_can.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
