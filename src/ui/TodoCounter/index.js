@@ -4,10 +4,10 @@ import "./TodoCounter.css";
 function TodoCounter({ totalTodos, completedTodosText, loading }) {
   return (
     <div className="TodoCounter">
-      <h1>TODO APP</h1>
+      <h1>Todos</h1>
       {!loading && (
         <h2>
-          C: {completedTodosText}/{totalTodos}
+          Completed: {completedTodosText}/{totalTodos}
         </h2>
       )}
     </div>

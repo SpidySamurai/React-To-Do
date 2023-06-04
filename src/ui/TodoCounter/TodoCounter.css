@@ -4,11 +4,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 
   color: white;
 }
 
-.TodoCounter h1,
-h2 {
+.TodoCounter h1{
   font-size: 3.4rem;
+}
+.TodoCounter h2{
+  font-size: 3rem;
+  text-align: right;
 }
