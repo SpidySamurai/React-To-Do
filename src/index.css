@@ -28,10 +28,14 @@ main {
   position: relative;
   margin: 0 auto;
   padding: 1rem;
-  min-height: 100vh;
+  height: 100vh;
   background-color: #5d3cbc;
   border-radius: 1.8rem;
   /* border: solid black 1px; */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Edge */
 }
 
 #root {
