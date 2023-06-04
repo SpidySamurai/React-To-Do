@@ -1,0 +1,10 @@
+.TodoListContainer-container {
+    overflow-y: auto;
+    height: calc(100vh - 23.89vh);
+
+    border-radius: 8px;
+}
+
+.TodoListContainer-container::-webkit-scrollbar {
+    display: none;
+}

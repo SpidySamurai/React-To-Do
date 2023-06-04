@@ -3,6 +3,7 @@ import { useTodos } from "../../routes/useTodos";
 import { TodoHeader } from "../../ui/TodoHeader";
 import { TodoSearch } from "../../ui/TodoSearch";
 import { TodoCounter } from "../../ui/TodoCounter";
+import {TodoListContainer } from "../../ui/TodoListContainer";
 import { TodoList } from "../../ui/TodoList";
 import { TodoCompletedList } from "../../ui/TodoCompletedList";
 import { TodoLoading } from "../../ui/TodoLoading";
@@ -51,6 +52,7 @@ function HomePage() {
           sincronizeTodos={sincronizeTodos}
           sincronizeCompletedTodos={sincronizeCompletedTodos}
         />
+        <TodoListContainer>
         <TodoList
           error={error}
           loading={loading}
@@ -98,6 +100,7 @@ function HomePage() {
             )}
           />
         )}
+        </TodoListContainer>
         {openModal && (
           <Modal>
             <TodoForm addTodo={addTodo} setOpenModal={setOpenModal} />
