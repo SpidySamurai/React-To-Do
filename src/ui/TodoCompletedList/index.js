@@ -5,7 +5,7 @@ function TodoCompletedList(props) {
   return (
     <section className="TodoCompletedList-container">
       {!props.loading && props.searchedCompletedTodos.length > 0 && (
-        <h2>Completed TODOS</h2>
+        <h2>Completed Todos</h2>
       )}
       <ul>
         {!props.loading && props.searchedCompletedTodos.map(props.render)}
