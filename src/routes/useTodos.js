@@ -11,20 +11,20 @@ function useTodos() {
     loading,
     error,
   } = useLocalStorage("TODOS_V1", [
-    { text: "TODO test 1", completed: false },
-    { text: "TODO test 2", completed: false },
-    { text: "TODO test 3", completed: false },
-    { text: "TODO test 4", completed: false },
-    { text: "TODO test 5", completed: false },
-    { text: "TODO test 6", completed: false },
-    { text: "TODO test 7", completed: false },
+    { text: "Buy groceries", completed: false },
+    { text: "Study japanese 3hrs", completed: false },
+    { text: "Train Karate and Katas", completed: false },
+    { text: "Improve my code skills", completed: false },
+    { text: "Take React Router course", completed: false },
+    { text: "Do skincare routine", completed: false },
+    { text: "Sleep", completed: false },
   ]);
   const {
     item: completedTodos,
     saveItem: saveCompletedTodos,
     sincronizeItem: sincronizeCompletedTodos,
   } = useLocalStorage("TODOS_COMPLETED_V1", [
-    { text: "TODO test 8", completed: true },
+    { text: "Eat a balanced healthy meal", completed: true },
   ]);
   const [searchValue, setSearchValue] = React.useState("");
   const [openModal, setOpenModal] = React.useState(false);
