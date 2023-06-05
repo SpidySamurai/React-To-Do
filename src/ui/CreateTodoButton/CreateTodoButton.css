@@ -1,7 +1,7 @@
 .CreateTodoButton {
   position: fixed;
-  bottom: 2vh;
-  right: calc(50% - 3.2rem);
+  bottom: 1.2vh;
+  right: calc(50% - 19.5rem);
 
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@
 }
 
 .CreateTodoButton:hover {
-  transform: rotate(224deg);
+  transform: rotate(180deg);
 }
 
 /* @media (min-width: 320px) {

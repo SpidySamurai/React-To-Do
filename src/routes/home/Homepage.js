@@ -3,7 +3,7 @@ import { useTodos } from "../../routes/useTodos";
 import { TodoHeader } from "../../ui/TodoHeader";
 import { TodoSearch } from "../../ui/TodoSearch";
 import { TodoCounter } from "../../ui/TodoCounter";
-import {TodoListContainer } from "../../ui/TodoListContainer";
+import { TodoListContainer } from "../../ui/TodoListContainer";
 import { TodoList } from "../../ui/TodoList";
 import { TodoCompletedList } from "../../ui/TodoCompletedList";
 import { TodoLoading } from "../../ui/TodoLoading";
@@ -53,39 +53,21 @@ function HomePage() {
           sincronizeCompletedTodos={sincronizeCompletedTodos}
         />
         <TodoListContainer>
-        <TodoList
-          error={error}
-          loading={loading}
-          searchedTodos={searchedTodos}
-          totalCompleteTodos={searchedCompletedTodos.length}
-          searchText={searchValue}
-          totalTodos={totalTodos}
-          onError={() => <TodoError />}
-          onLoading={() => <TodoLoading />}
-          onEmptyTodos={() => <TodoEmpty />}
-          onEmptySearchResults={(searchText) => (
-            <p>There is no results for {searchText}</p>
-          )}
-        >
-          {(todo) => (
-            <TodoItem
-              key={todo.text}
-              text={todo.text}
-              completed={todo.completed}
-              onToggleComplete={() => {
-                toggleCompleteTodo(todo.text, todo.completed);
-              }}
-              onDelete={() => {
-                deleteTodo(todo.text, todo.completed);
-              }}
-            />
-          )}
-        </TodoList>
-        {searchedCompletedTodos && (
-          <TodoCompletedList
+          <TodoList
+            error={error}
             loading={loading}
-            searchedCompletedTodos={searchedCompletedTodos}
-            render={(todo) => (
+            searchedTodos={searchedTodos}
+            totalCompleteTodos={searchedCompletedTodos.length}
+            searchText={searchValue}
+            totalTodos={totalTodos}
+            onError={() => <TodoError />}
+            onLoading={() => <TodoLoading />}
+            onEmptyTodos={() => <TodoEmpty />}
+            onEmptySearchResults={(searchText) => (
+              <p>There is no results for {searchText}</p>
+            )}
+          >
+            {(todo) => (
               <TodoItem
                 key={todo.text}
                 text={todo.text}
@@ -98,9 +80,30 @@ function HomePage() {
                 }}
               />
             )}
-          />
-        )}
+          </TodoList>
+          {searchedCompletedTodos && (
+            <TodoCompletedList
+              loading={loading}
+              searchedCompletedTodos={searchedCompletedTodos}
+              render={(todo) => (
+                <TodoItem
+                  key={todo.text}
+                  text={todo.text}
+                  completed={todo.completed}
+                  onToggleComplete={() => {
+                    toggleCompleteTodo(todo.text, todo.completed);
+                  }}
+                  onDelete={() => {
+                    deleteTodo(todo.text, todo.completed);
+                  }}
+                />
+              )}
+            />
+          )}
         </TodoListContainer>
+        <footer>
+          <a href="https://github.com/SpidySamurai">@Javier Chi aka Spidy</a>
+        </footer>
         {openModal && (
           <Modal>
             <TodoForm addTodo={addTodo} setOpenModal={setOpenModal} />

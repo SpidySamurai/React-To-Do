@@ -1,6 +1,9 @@
 .TodoListContainer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     overflow-y: auto;
-    height: calc(100vh - 23.89vh);
+    height: calc(100vh - 26.89vh);
 
     border-radius: 8px;
 }

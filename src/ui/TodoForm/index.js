@@ -14,19 +14,32 @@ function TodoForm({ addTodo, setOpenModal }) {
     addTodo(newTodoValue);
     setOpenModal((prevState) => !prevState);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    onSubmit();
+  }
+
+  const handleInvalid = (event) => {
+    event.target.setCustomValidity('Please enter a new task');
+  };
+
   return (
-    <div className="TodoForm">
+    <form className="TodoForm" onSubmit={handleSubmit}>
       <h2>Add a new task</h2>
       <input
         value={newTodoValue}
         onChange={onChange}
         placeholder="New task text"
+        required
+        onInvalid={handleInvalid}
       ></input>
       <div>
-        <button onClick={() => onSubmit()}>Add task</button>
-        <button onClick={onCancel}>Cancel</button>
+        <button type="submit">Add task</button>
+        <button type="button" onClick={onCancel}>Cancel</button>
       </div>
-    </div>
+    </form>
   );
 }
 export { TodoForm };
