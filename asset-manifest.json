@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-to-do/static/css/main.2bab0702.css",
-    "main.js": "/react-to-do/static/js/main.65cbea00.js",
+    "main.css": "/react-to-do/static/css/main.0789fd95.css",
+    "main.js": "/react-to-do/static/js/main.1159f6f3.js",
     "static/media/icon_trash_can.svg": "/react-to-do/static/media/icon_trash_can.a645b5045a97d99ec2f8.svg",
     "index.html": "/react-to-do/index.html",
     "static/media/icon_check--active.svg": "/react-to-do/static/media/icon_check--active.21e0d935feff96c48c4f.svg",
     "static/media/icon_check.svg": "/react-to-do/static/media/icon_check.a03c08689ad589ace529.svg",
-    "main.2bab0702.css.map": "/react-to-do/static/css/main.2bab0702.css.map",
-    "main.65cbea00.js.map": "/react-to-do/static/js/main.65cbea00.js.map"
+    "main.0789fd95.css.map": "/react-to-do/static/css/main.0789fd95.css.map",
+    "main.1159f6f3.js.map": "/react-to-do/static/js/main.1159f6f3.js.map"
   },
   "entrypoints": [
-    "static/css/main.2bab0702.css",
-    "static/js/main.65cbea00.js"
+    "static/css/main.0789fd95.css",
+    "static/js/main.1159f6f3.js"
   ]
 }
