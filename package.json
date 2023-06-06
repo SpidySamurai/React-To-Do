@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.11.2"
   },
   "homepage": "https://SpidySamurai.github.io/react-to-do"
 }

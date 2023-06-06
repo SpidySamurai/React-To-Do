@@ -1,19 +1,19 @@
 import React from "react";
-import { useTodos } from "../../routes/useTodos";
-import { TodoHeader } from "../../ui/TodoHeader";
-import { TodoSearch } from "../../ui/TodoSearch";
-import { TodoCounter } from "../../ui/TodoCounter";
-import { TodoListContainer } from "../../ui/TodoListContainer";
-import { TodoList } from "../../ui/TodoList";
-import { TodoCompletedList } from "../../ui/TodoCompletedList";
-import { TodoLoading } from "../../ui/TodoLoading";
-import { TodoError } from "../../ui/TodoError";
-import { TodoEmpty } from "../../ui/TodoEmpty";
-import { TodoItem } from "../../ui/TodoItem";
-import { CreateTodoButton } from "../../ui/CreateTodoButton";
-import { TodoForm } from "../../ui/TodoForm";
-import { Modal } from "../../ui/Modal";
-import { ChangeAlert } from "../../ui/ChangeAlert";
+import { useTodos } from "../hooks/useTodos";
+import { TodoHeader } from "../ui/TodoHeader";
+import { TodoSearch } from "../ui/TodoSearch";
+import { TodoCounter } from "../ui/TodoCounter";
+import { TodoListContainer } from "../ui/TodoListContainer";
+import { TodoList } from "../ui/TodoList";
+import { TodoCompletedList } from "../ui/TodoCompletedList";
+import { TodoLoading } from "../ui/TodoLoading";
+import { TodoError } from "../ui/TodoError";
+import { TodoEmpty } from "../ui/TodoEmpty";
+import { TodoItem } from "../ui/TodoItem";
+import { CreateTodoButton } from "../ui/CreateTodoButton";
+import { TodoForm } from "../ui/TodoForm";
+import { Modal } from "../ui/Modal";
+import { ChangeAlert } from "../ui/ChangeAlert";
 
 function HomePage() {
   const {
