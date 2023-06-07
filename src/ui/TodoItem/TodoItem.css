@@ -43,6 +43,12 @@
   color: #4caf50;
 }
 
+.Icon__edit {
+  background-image: url(../../assets/icons/icon_edit.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .Icon__delete {
   background-image: url(../../assets/icons/icon_trash_can.svg);
   background-repeat: no-repeat;
