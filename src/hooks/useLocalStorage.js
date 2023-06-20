@@ -48,8 +48,10 @@ function useLocalStorage(itemName, initialValue) {
     }, 3000);
   }, [sincronizedItem]);
 
-  const saveItem = (newItem) => {
+  const saveItem = (updateFunction) => {
     try {
+      const prevItem = JSON.parse(localStorage.getItem(itemName));
+      const newItem = updateFunction(prevItem);
       const stringifiedItem = JSON.stringify(newItem);
       localStorage.setItem(itemName, stringifiedItem);
       onSave(newItem);

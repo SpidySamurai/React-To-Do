@@ -25,6 +25,7 @@ function HomePage() {
     toggleCompleteTodo,
     deleteTodo,
     addTodo,
+    editTodo,
     openModal,
     setOpenModal,
     totalTodos,
@@ -73,10 +74,10 @@ function HomePage() {
                 text={todo.text}
                 completed={todo.completed}
                 onToggleComplete={() => {
-                  toggleCompleteTodo(todo.text, todo.completed);
+                  toggleCompleteTodo(todo.id, todo.completed);
                 }}
                 onDelete={() => {
-                  deleteTodo(todo.text, todo.completed);
+                  deleteTodo(todo.id, todo.completed);
                 }}
               />
             )}
@@ -91,10 +92,10 @@ function HomePage() {
                   text={todo.text}
                   completed={todo.completed}
                   onToggleComplete={() => {
-                    toggleCompleteTodo(todo.text, todo.completed);
+                    toggleCompleteTodo(todo.id, todo.completed);
                   }}
                   onDelete={() => {
-                    deleteTodo(todo.text, todo.completed);
+                    deleteTodo(todo.id, todo.completed);
                   }}
                 />
               )}

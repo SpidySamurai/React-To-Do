@@ -2,30 +2,58 @@ import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 // {Provider,Consumer} TodoContext.Provider and TodoContext.Consumer
+function* newTodoId(id) {
+  while (true) {
+    yield id++;
+  }
+}
+
+const filterTodoByText = (todoList, searchValue) => {
+  return todoList.filter((todo) => {
+    const todoText = todo.text.toLowerCase();
+    return todoText.includes(searchValue);
+  });
+};
+
+const orderTodos = (todoList) => {
+  todoList.sort((todoA, todoB) => todoA.text.localeCompare(todoB.text));
+};
+
 
 function useTodos() {
+  const initialData = [
+    { text: "Buy groceries", completed: false, id: 1 },
+    { text: "Study japanese 3hrs", completed: false, id: 2 },
+    { text: "Train Karate and Katas", completed: false, id: 3 },
+    { text: "Improve my code skills", completed: false, id: 4 },
+    { text: "Take React Router course", completed: false, id: 5 },
+    { text: "Do skincare routine", completed: false, id: 6 },
+    { text: "Sleep", completed: false, id: 7 }
+  ]
+
+  const initialDataComplete = [
+    { text: "Eat a balanced healthy meal", completed: true, id: 8 },
+  ]
+
+  const highInitialId = initialData.length + initialDataComplete.length + 1;
+  const idGeneratorRef = React.useRef(newTodoId(highInitialId));
+
   const {
     item: todos,
     saveItem: saveTodos,
     sincronizeItem: sincronizeTodos,
     loading,
     error,
-  } = useLocalStorage("TODOS_V1", [
-    { text: "Buy groceries", completed: false },
-    { text: "Study japanese 3hrs", completed: false },
-    { text: "Train Karate and Katas", completed: false },
-    { text: "Improve my code skills", completed: false },
-    { text: "Take React Router course", completed: false },
-    { text: "Do skincare routine", completed: false },
-    { text: "Sleep", completed: false },
-  ]);
+  } = useLocalStorage("TODOS_V2", initialData);
+
   const {
     item: completedTodos,
     saveItem: saveCompletedTodos,
     sincronizeItem: sincronizeCompletedTodos,
-  } = useLocalStorage("TODOS_COMPLETED_V1", [
-    { text: "Eat a balanced healthy meal", completed: true },
-  ]);
+  } = useLocalStorage("TODOS_COMPLETED_V2",
+    initialDataComplete
+  );
+
   const [searchValue, setSearchValue] = React.useState("");
   const [openModal, setOpenModal] = React.useState(false);
 
@@ -41,70 +69,73 @@ function useTodos() {
     searchedTodos = todos;
     searchedCompletedTodos = completedTodos;
   } else {
-    searchedTodos = todos.filter((todo) => {
-      const searchText = searchValue.toLocaleLowerCase();
-      const todoText = todo.text.toLowerCase();
-      return todoText.includes(searchText);
-    });
-    searchedCompletedTodos = completedTodos.filter((todo) => {
-      const searchText = searchValue.toLocaleLowerCase();
-      const todoText = todo.text.toLowerCase();
-      return todoText.includes(searchText);
-    });
+    const searchText = searchValue.toLowerCase();
+    searchedTodos = filterTodoByText(todos, searchText);
+    searchedCompletedTodos = filterTodoByText(completedTodos, searchText);
   }
-  const orderTodos = (todoList) => {
-    todoList.sort((todoA, todoB) => todoA.text.localeCompare(todoB.text));
-  };
 
   const addTodo = (todoText) => {
-    const newTodos = [...todos];
-    newTodos.push({ text: todoText, completed: false });
-    saveTodos(newTodos);
+    let id = idGeneratorRef.current.next().value;
+    const newTodo = { text: todoText, completed: false, id };
+    saveTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
-  const disCompleteTodo = (todoText, newTodos, newCompletedTodos) => {
-    let todoIndex = completedTodos.findIndex((todo) => todo.text === todoText);
-    newCompletedTodos[todoIndex].completed = false;
-    newTodos.push(newCompletedTodos[todoIndex]);
-    newCompletedTodos.splice(todoIndex, 1);
-  };
+  const moveTodo = (todoId, isCompleted, source, target) => {
+    const todoIndex = source.findIndex(todo => todo.id === todoId);
+    const newItem = { ...source[todoIndex], completed: isCompleted }
 
-  const completeTodo = (todoText, newTodos, newCompletedTodos) => {
-    let todoIndex = todos.findIndex((todo) => todo.text === todoText);
-    newTodos[todoIndex].completed = true;
-    newCompletedTodos.push(newTodos[todoIndex]);
-    newTodos.splice(todoIndex, 1);
-  };
+    const newSource = [...source.slice(0, todoIndex), ...source.slice(todoIndex + 1)]
+    const newTarget = [...target, newItem];
 
-  const toggleCompleteTodo = (todoText, todoCompleted) => {
-    const newTodos = [...todos];
-    const newCompletedTodos = [...completedTodos];
+    orderTodos(newSource)
+    orderTodos(newTarget)
+
+    return { newSource, newTarget }
+  }
+
+  const toggleCompleteTodo = (todoId, todoCompleted) => {
     if (todoCompleted) {
-      disCompleteTodo(todoText, newTodos, newCompletedTodos);
-      orderTodos(newTodos);
+      saveTodos((prevTodos) => {
+        const { newSource, newTarget } = moveTodo(todoId, false, completedTodos, prevTodos);
+        saveCompletedTodos((prevCompleted) => newSource);
+        return newTarget;
+      });
     } else {
-      completeTodo(todoText, newTodos, newCompletedTodos);
-      orderTodos(newCompletedTodos);
+      saveTodos((prevTodos) => {
+        const { newSource, newTarget } = moveTodo(todoId, true, prevTodos, completedTodos);
+        saveCompletedTodos((prevCompleted) => newTarget);
+        return newSource;
+      });
     }
-
-    saveCompletedTodos(newCompletedTodos);
-    saveTodos(newTodos);
   };
 
-  const deleteTodo = (todoText, todoCompleted) => {
+  const deleteTodo = (todoId, todoCompleted) => {
     let todoIndex;
     if (todoCompleted) {
-      todoIndex = completedTodos.findIndex((todo) => todo.text === todoText);
-      const newCompletedTodos = [...completedTodos];
-      newCompletedTodos.splice(todoIndex, 1);
-      saveCompletedTodos(newCompletedTodos);
+      saveCompletedTodos((prevTodos) => prevTodos.filter(todo => todo.id !== todoId));
     } else {
-      todoIndex = todos.findIndex((todo) => todo.text === todoText);
-      const newTodos = [...todos];
-      newTodos.splice(todoIndex, 1);
-      saveTodos(newTodos);
+      saveTodos((prevTodos) => prevTodos.filter(todo => todo.id !== todoId));
     }
   };
+
+  const editTodo = (todoId, editedTodoText, todoCompleted) => {
+    let todoIndex;
+    if (todoCompleted) {
+      todoIndex = completedTodos.findIndex((todo) => todo.id === todoId);
+      const newCompletedTodos = [...completedTodos];
+      let TodoItem = { ...newCompletedTodos[todoIndex] };
+      TodoItem.text = editedTodoText;
+      newCompletedTodos[todoIndex] = TodoItem;
+      saveCompletedTodos((prevTodos) => {});
+    } else {
+      todoIndex = todos.findIndex((todo) => todo.id === todoId);
+      const newTodos = [...todos];
+      let TodoItem = { ...newTodos[todoIndex] };
+      TodoItem.text = editedTodoText;
+      newTodos[todoIndex] = TodoItem;
+      saveTodos((prevTodos) => {});
+    }
+  }
 
   return {
     error,
@@ -113,6 +144,7 @@ function useTodos() {
     searchedCompletedTodos,
     toggleCompleteTodo,
     deleteTodo,
+    editTodo,
     addTodo,
     openModal,
     setOpenModal,
