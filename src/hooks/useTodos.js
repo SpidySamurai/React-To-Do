@@ -8,6 +8,8 @@ function* newTodoId(id) {
   }
 }
 
+let idGenerator = newTodoId(9);
+
 const filterTodoByText = (todoList, searchValue) => {
   return todoList.filter((todo) => {
     const todoText = todo.text.toLowerCase();
@@ -36,7 +38,7 @@ function useTodos() {
   ]
 
   const highInitialId = initialData.length + initialDataComplete.length + 1;
-  const idGeneratorRef = React.useRef(newTodoId(highInitialId));
+  const idGeneratorRef = React.useRef(idGenerator);
 
   const {
     item: todos,
@@ -76,9 +78,20 @@ function useTodos() {
 
   const addTodo = (todoText) => {
     let id = idGeneratorRef.current.next().value;
+    console.log(id);
     const newTodo = { text: todoText, completed: false, id };
     saveTodos((prevTodos) => [...prevTodos, newTodo]);
   };
+
+  const getTodo = (id) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
+    if(todoIndex !== -1) {
+      return todos[todoIndex];
+    }
+
+    const todoCompletedIndex =  completedTodos.findIndex(todo => todo.id === id);
+    return completedTodos[todoCompletedIndex]; 
+  }
 
   const moveTodo = (todoId, isCompleted, source, target) => {
     const todoIndex = source.findIndex(todo => todo.id === todoId);
@@ -126,14 +139,14 @@ function useTodos() {
       let TodoItem = { ...newCompletedTodos[todoIndex] };
       TodoItem.text = editedTodoText;
       newCompletedTodos[todoIndex] = TodoItem;
-      saveCompletedTodos((prevTodos) => {});
+      saveCompletedTodos((prevTodos) => newCompletedTodos);
     } else {
       todoIndex = todos.findIndex((todo) => todo.id === todoId);
       const newTodos = [...todos];
       let TodoItem = { ...newTodos[todoIndex] };
       TodoItem.text = editedTodoText;
       newTodos[todoIndex] = TodoItem;
-      saveTodos((prevTodos) => {});
+      saveTodos((prevTodos) => newTodos);
     }
   }
 
@@ -146,8 +159,9 @@ function useTodos() {
     deleteTodo,
     editTodo,
     addTodo,
-    openModal,
-    setOpenModal,
+    getTodo,
+    // openModal,
+    // setOpenModal,
     totalTodos,
     completedTodosText,
     searchValue,

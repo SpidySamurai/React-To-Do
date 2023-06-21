@@ -1,13 +1,12 @@
-import React from 'react'
+import React from 'react';
+import '../styles/NotFound.css';
 
-export default function NotFound() {
-    const provStyles = {
-        color: 'white'
-    }
-
+const NotFound = () => {
     return (
-        <div className="NotFoundContainer" style={provStyles}>
-            <h1>Not Found 404!</h1>
+        <div className="error-container">
+            <h1 className="error-text">404 Page Not Found</h1>
         </div>
-    )
-}
+    );
+};
+
+export default NotFound;

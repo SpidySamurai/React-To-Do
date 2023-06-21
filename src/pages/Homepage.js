@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useTodos } from "../hooks/useTodos";
 import { TodoHeader } from "../ui/TodoHeader";
 import { TodoSearch } from "../ui/TodoSearch";
@@ -16,6 +17,7 @@ import { Modal } from "../ui/Modal";
 import { ChangeAlert } from "../ui/ChangeAlert";
 
 function HomePage() {
+  const navigate = useNavigate();
   const {
     error,
     loading,
@@ -76,6 +78,14 @@ function HomePage() {
                 onToggleComplete={() => {
                   toggleCompleteTodo(todo.id, todo.completed);
                 }}
+                onEdit={() => {
+                  navigate(
+                    '/edit/' + todo.id,
+                    {
+                      state: { todo }
+                    },
+                  );
+                }}
                 onDelete={() => {
                   deleteTodo(todo.id, todo.completed);
                 }}
@@ -94,6 +104,14 @@ function HomePage() {
                   onToggleComplete={() => {
                     toggleCompleteTodo(todo.id, todo.completed);
                   }}
+                  onEdit={() => {
+                    navigate(
+                      '/edit/' + todo.id,
+                      {
+                        state: { todo }
+                      },
+                    );
+                  }}
                   onDelete={() => {
                     deleteTodo(todo.id, todo.completed);
                   }}
@@ -105,12 +123,15 @@ function HomePage() {
         <footer>
           <a href="https://github.com/SpidySamurai">@Javier Chi aka Spidy</a>
         </footer>
-        {openModal && (
+        {/* {openModal && (
           <Modal>
             <TodoForm addTodo={addTodo} setOpenModal={setOpenModal} />
           </Modal>
-        )}
-        <CreateTodoButton setOpenModal={setOpenModal} />
+        )} */}
+        <CreateTodoButton 
+          onClick={() => navigate('/new')}
+        // setOpenModal={setOpenModal} 
+        />
       </main>
     </React.Fragment>
   );

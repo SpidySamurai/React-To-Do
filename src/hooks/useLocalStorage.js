@@ -29,7 +29,7 @@ function useLocalStorage(itemName, initialValue) {
     });
 
   React.useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       try {
         const localStorageItem = localStorage.getItem(itemName);
         let parsedItem;
@@ -45,7 +45,10 @@ function useLocalStorage(itemName, initialValue) {
       } catch (error) {
         onError(error);
       }
-    }, 3000);
+    }, 400);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [sincronizedItem]);
 
   const saveItem = (updateFunction) => {
