@@ -1,23 +1,42 @@
 import React from "react";
 import "./TodoForm.css";
-import { useNavigate } from "react-router-dom";
+import "./TodoForm.css";
+// import { useNavigate } from "react-router-dom";
 
 function TodoForm(props) {
-  const [newTodoText, setNewTodoText] = React.useState(props.defaultTodoText ||"");
-  const navigate = useNavigate();
+  const [newTodoValue, setNewTodoValue] = React.useState(props.defaultTodoText || "");
+  const [newTodoPriority, setNewTodoPriority] = React.useState(props.defaultTodoPriority || "low");
+  const [newTodoDate, setNewTodoDate] = React.useState(props.defaultTodoDate || "");
+  
+  // No navigation needed here anymore, handled by parent or just removed
+  // const navigate = useNavigate();
 
-  const onChange = (ev) => {
-    setNewTodoText(ev.target.value);
-    console.log(newTodoText); 
+
+  const onChange = (event) => {
+    setNewTodoValue(event.target.value);
   };
+  
+  const onPriorityChange = (event) => {
+    setNewTodoPriority(event.target.value);
+  };
+
+  const onDateChange = (event) => {
+    setNewTodoDate(event.target.value);
+  };
+
   const onCancel = () => {
-    // setOpenModal((prevState) => !prevState);
-    navigate('/');
+    // navigate('/');
+    if(props.onCancel) props.onCancel();
   };
+  
   const onSubmit = () => {
-    navigate('/');
-    props.submitEvent(newTodoText)
-    // setOpenModal((prevState) => !prevState);
+    props.submitEvent({
+      text: newTodoValue,
+      priority: newTodoPriority,
+      dueDate: newTodoDate
+    });
+    // navigate('/');
+    if(props.onCancel) props.onCancel(); // Close modal on submit
   };
 
   const handleSubmit = (event) => {
@@ -25,21 +44,44 @@ function TodoForm(props) {
     onSubmit();
   }
 
-  const handleInvalid = (event) => {
-    event.target.setCustomValidity('Please enter a text');
-  };
+
 
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>
       <h2>{props.label}</h2>
-      <input
-        value={newTodoText}
+      <textarea
+        value={newTodoValue}
         onChange={onChange}
-        placeholder="New task"
+        placeholder="Escribe tu nueva tarea..."
         required
-        onInvalid={handleInvalid}
-      ></input>
-      <div>
+      />
+      
+      <div className="TodoForm-options">
+        <label>
+          <span className="label-text">Prioridad</span>
+          <select 
+            value={newTodoPriority} 
+            onChange={onPriorityChange}
+            className="TodoForm-select"
+          >
+            <option value="low">Baja</option>
+            <option value="medium">Media</option>
+            <option value="high">Alta</option>
+          </select>
+        </label>
+
+        <label>
+          <span className="label-text">Fecha límite</span>
+          <input 
+            type="date" 
+            value={newTodoDate} 
+            onChange={onDateChange}
+            className="TodoForm-date"
+          />
+        </label>
+      </div>
+
+      <div className="TodoForm-buttonContainer">
         <button type="submit">{props.submitText}</button>
         <button type="button" onClick={onCancel}>Cancel</button>
       </div>

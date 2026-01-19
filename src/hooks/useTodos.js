@@ -24,17 +24,17 @@ const orderTodos = (todoList) => {
 
 function useTodos() {
   const initialData = [
-    { text: "Buy groceries", completed: false, id: 1 },
-    { text: "Study japanese 3hrs", completed: false, id: 2 },
-    { text: "Train Karate and Katas", completed: false, id: 3 },
-    { text: "Improve my code skills", completed: false, id: 4 },
-    { text: "Take React Router course", completed: false, id: 5 },
-    { text: "Do skincare routine", completed: false, id: 6 },
-    { text: "Sleep", completed: false, id: 7 }
+    { text: "Buy groceries", completed: false, id: 1, priority: 'medium', dueDate: '2023-10-30' },
+    { text: "Study japanese 3hrs", completed: false, id: 2, priority: 'high', dueDate: '2023-11-01' },
+    { text: "Train Karate and Katas", completed: false, id: 3, priority: 'low', dueDate: '' },
+    { text: "Improve my code skills", completed: false, id: 4, priority: 'high', dueDate: '2023-12-31' },
+    { text: "Take React Router course", completed: false, id: 5, priority: 'medium', dueDate: '' },
+    { text: "Do skincare routine", completed: false, id: 6, priority: 'low', dueDate: '' },
+    { text: "Sleep", completed: false, id: 7, priority: 'high', dueDate: '' }
   ]
 
   const initialDataComplete = [
-    { text: "Eat a balanced healthy meal", completed: true, id: 8 },
+    { text: "Eat a balanced healthy meal", completed: true, id: 8, priority: 'medium', dueDate: '2023-10-15' },
   ]
 
   /* const highInitialId = initialData.length + initialDataComplete.length + 1; */
@@ -46,13 +46,13 @@ function useTodos() {
     sincronizeItem: sincronizeTodos,
     loading,
     error,
-  } = useLocalStorage("TODOS_V2", initialData);
+  } = useLocalStorage("TODOS_V3", initialData);
 
   const {
     item: completedTodos,
     saveItem: saveCompletedTodos,
     sincronizeItem: sincronizeCompletedTodos,
-  } = useLocalStorage("TODOS_COMPLETED_V2",
+  } = useLocalStorage("TODOS_COMPLETED_V3",
     initialDataComplete
   );
 
@@ -75,10 +75,15 @@ function useTodos() {
     searchedCompletedTodos = filterTodoByText(completedTodos, searchText);
   }
 
-  const addTodo = (todoText) => {
+  const addTodo = ({ text, priority, dueDate }) => {
     let id = idGeneratorRef.current.next().value;
-    console.log(id);
-    const newTodo = { text: todoText, completed: false, id };
+    const newTodo = { 
+      text, 
+      completed: false, 
+      id,
+      priority: priority || 'low',
+      dueDate: dueDate || ''
+    };
     saveTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
@@ -129,20 +134,24 @@ function useTodos() {
     }
   };
 
-  const editTodo = (todoId, editedTodoText, todoCompleted) => {
+  const editTodo = (todoId, newText, newPriority, newDueDate, todoCompleted) => {
     let todoIndex;
     if (todoCompleted) {
       todoIndex = completedTodos.findIndex((todo) => todo.id === todoId);
       const newCompletedTodos = [...completedTodos];
       let TodoItem = { ...newCompletedTodos[todoIndex] };
-      TodoItem.text = editedTodoText;
+      TodoItem.text = newText;
+      TodoItem.priority = newPriority;
+      TodoItem.dueDate = newDueDate;
       newCompletedTodos[todoIndex] = TodoItem;
       saveCompletedTodos((prevTodos) => newCompletedTodos);
     } else {
       todoIndex = todos.findIndex((todo) => todo.id === todoId);
       const newTodos = [...todos];
       let TodoItem = { ...newTodos[todoIndex] };
-      TodoItem.text = editedTodoText;
+      TodoItem.text = newText;
+      TodoItem.priority = newPriority;
+      TodoItem.dueDate = newDueDate;
       newTodos[todoIndex] = TodoItem;
       saveTodos((prevTodos) => newTodos);
     }

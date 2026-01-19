@@ -57,21 +57,72 @@ body {
   padding-top: 5rem;
 }
 
-main {
-  position: relative;
+/* Dashboard Layout */
+.Dashboard-container {
   width: 100%;
   max-width: 50rem;
   margin: 0 auto;
   padding: 3rem;
   
-  /* Glassmorphism */
+  /* Mobile Default (Single Column) */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  
+  /* Glassmorphism Base */
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  
   border-radius: 2.4rem;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  min-height: 80vh;
+}
+
+/* Tablet: Allow more width for the Grid to work */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .Dashboard-container {
+    max-width: 90%; /* or ~800px */
+  }
+}
+
+.Dashboard-sidebar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.Dashboard-content {
+  width: 100%;
+}
+
+.Sidebar-actions {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+/* Tablet & Desktop */
+@media (min-width: 1024px) {
+  .Dashboard-container {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 320px 1fr; /* Sidebar fixed width, Content fluid */
+    gap: 4rem;
+    align-items: start;
+    padding: 4rem;
+  }
+
+  .Dashboard-sidebar {
+    position: sticky;
+    top: 4rem;
+    height: fit-content;
+  }
+  
+  .Sidebar-actions {
+    justify-content: flex-start; /* Align button to start in sidebar */
+  }
 }
 
 footer {

@@ -18,27 +18,57 @@
   margin-bottom: 2rem;
 }
 
-.TodoForm input {
+.TodoForm textarea {
   width: 100%;
-  height: 4.8rem;
-  margin-bottom: 2.4rem;
-  text-align: center;
+  height: 8rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
   color: var(--color-bg-dark);
+  font-family: inherit;
   font-size: 1.8rem;
   font-weight: 500;
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid transparent;
   outline: none;
+  resize: none;
   transition: border-color 0.3s;
 }
 
-.TodoForm input:focus {
+.TodoForm textarea:focus {
     border-color: var(--color-accent-primary);
 }
 
-.TodoForm input::placeholder {
-  color: var(--color-secondary);
+.TodoForm-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.4rem;
+  flex-wrap: wrap;
+}
+
+.TodoForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.label-text {
+  color: var(--color-text-primary);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.TodoForm-select, .TodoForm-date {
+  width: 100%;
+  height: 4rem;
+  padding: 0 1rem;
+  border-radius: 0.8rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-bg-dark);
+  font-family: inherit;
 }
 
 .TodoForm button {

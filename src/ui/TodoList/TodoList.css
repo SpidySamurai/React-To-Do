@@ -1,10 +1,18 @@
 ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap:2.4rem;
+  gap: 2rem;
+}
 
-  margin: 0;
-  list-style: none;
+@media (min-width: 768px) {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
 }
 
 p:nth-child(1) {
