@@ -15,7 +15,7 @@ function TodoSearch({ searchValue, setSearchValue, loading, params , setParams }
   useEffect(() => {
     const search = params.get("search") ?? "";
     setSearchValue(search);
-  },[params])
+  },[params, setSearchValue])
 
   return (
     <section className="TodoSearch">

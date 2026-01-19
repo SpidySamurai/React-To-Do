@@ -6,7 +6,7 @@
   align-items: center;
   gap: 1rem;
 
-  color: white;
+  color: var(--color-text-primary);
 }
 
 .TodoCounter h1{

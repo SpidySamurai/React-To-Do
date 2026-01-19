@@ -12,8 +12,6 @@ import { TodoError } from "../ui/TodoError";
 import { TodoEmpty } from "../ui/TodoEmpty";
 import { TodoItem } from "../ui/TodoItem";
 import { CreateTodoButton } from "../ui/CreateTodoButton";
-import { TodoForm } from "../ui/TodoForm";
-import { Modal } from "../ui/Modal";
 import { ChangeAlert } from "../ui/ChangeAlert";
 
 function HomePage() {
@@ -22,15 +20,10 @@ function HomePage() {
   const {
     error,
     loading,
-    empty,
     searchedTodos,
     searchedCompletedTodos,
     toggleCompleteTodo,
     deleteTodo,
-    addTodo,
-    editTodo,
-    openModal,
-    setOpenModal,
     totalTodos,
     completedTodosText,
     searchValue,

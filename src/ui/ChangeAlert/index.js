@@ -8,7 +8,7 @@ function ChangeAlert({ sincronizeTodos, sincronizeCompletedTodos }) {
   );
   if (show) {
     return (
-      <div class="changeAlert__container">
+      <div className="changeAlert__container">
         <p>There are changes...</p>;
         <button onClick={() => toggleShow(false)}>Recharge info</button>
       </div>

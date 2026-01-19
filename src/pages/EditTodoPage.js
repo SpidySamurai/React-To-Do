@@ -5,12 +5,12 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import "../styles/NewTodoPage.css";
 
 const EditTodoPage = () => {
-  const params = useParams();
+  const { id: idParam } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const id = Number(params.id);
+  const id = Number(idParam);
 
-  const { loading, getTodo, editTodo } = useTodos();
+  const { editTodo, getTodo, loading, error } = useTodos();
   const todo = getTodo(id);
 
   let todoText;

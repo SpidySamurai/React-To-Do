@@ -1,5 +1,5 @@
 .ModalBackground {
-  background: rgba(32, 35, 41, 0.8);
+  background: var(--color-overlay);
   position: fixed;
   top: -10px;
   left: -10px;

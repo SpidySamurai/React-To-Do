@@ -1,53 +1,92 @@
 :root {
-  --primary-color: #5d3cbc;
-  --secondary-color: #442f7e;
-  --text-primary-color: white;
-  --text-secondary-color: #442f7e;
+  /* Palette: Deep Blue Luxury */
+  --color-bg: #0f172a; /* Deep Slate Blue */
+  --color-bg-dark: #1e293b; /* Lighter Slate */
+  --color-accent-primary: #8b5cf6; /* Vivid Violet */
+  --color-accent-secondary: #06b6d4; /* Cyan */
+  
+  /* Text */
+  --color-text-primary: #f8fafc; /* Very light cool gray */
+  --color-text-secondary: #cbd5e1;
+  
+  /* Status */
+  --color-success: #10b981; /* Emerald */
+  --color-error: #ef4444; /* Red */
+
+  /* UI Elements */
+  --color-card-bg: rgba(30, 41, 59, 0.7);
+  --color-card-hover: rgba(30, 41, 59, 0.9);
+  
+  /* Typography */
+  --font-main: 'Outfit', sans-serif;
+
+  /* Dimensions & Spacing */
+  --border-radius-lg: 2.4rem;
+  --border-radius-md: 1.2rem;
+  
+  /* Effects */
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+  --color-overlay: rgba(15, 23, 42, 0.9);
 }
 
 * {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5%; /* 1rem = 10px */
 }
 
 body {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-  background-color: #240b70;
-  color: #1e1e1f;
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  /* Scrollbar override */
+  scrollbar-width: none; /* Firefox */
+  
+  /* Dark Mode Aesthetic */
+  background: var(--color-bg);
+  background: radial-gradient(circle at top right, #1e293b 0%, var(--color-bg) 60%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5rem;
 }
 
 main {
   position: relative;
-  min-width: 32rem;
-  max-width: 42.5rem;
-  position: relative;
+  width: 100%;
+  max-width: 50rem;
   margin: 0 auto;
-  padding: 1rem;
-  height: 100vh;
-  background-color: #5d3cbc;
-  border-radius: 1.8rem;
-  /* border: solid black 1px; */
+  padding: 3rem;
+  
+  /* Glassmorphism */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  border-radius: 2.4rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-footer{
-  padding-top: 2.2rem;
-  font-size: 2.8rem;
+footer {
+  padding-top: 2rem;
+  font-size: 1.6rem;
+  text-align: center;
 }
 
-footer a{
-  color: #cfd0ff;
+footer a {
+  color: var(--color-text-secondary);
   text-decoration: none;
+  font-weight: bold;
 }
 
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Edge */
-}
-
-#root {
-  min-height: 100vh;
+button {
+  cursor: pointer;
+  font-family: inherit;
 }

@@ -10,12 +10,14 @@
   width: 6.4rem;
   height: 6.4rem;
 
-  color: white;
-  font-size: 5rem;
+  color: var(--color-text-primary);
+  font-size: 4rem;
   font-weight: bold;
-  background-color: #442f7e;
-  box-shadow: 0px 5px 25px rgba(97, 218, 250, 0.5);
+  background: var(--color-accent-primary); /* Fallback */
+  background: linear-gradient(135deg, var(--color-accent-primary) 0%, #6366f1 100%);
+  box-shadow: var(--shadow-glow);
   border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s;
   border: none;
   outline: none;
 

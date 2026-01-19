@@ -37,7 +37,7 @@ function useTodos() {
     { text: "Eat a balanced healthy meal", completed: true, id: 8 },
   ]
 
-  const highInitialId = initialData.length + initialDataComplete.length + 1;
+  /* const highInitialId = initialData.length + initialDataComplete.length + 1; */
   const idGeneratorRef = React.useRef(idGenerator);
 
   const {
@@ -57,7 +57,6 @@ function useTodos() {
   );
 
   const [searchValue, setSearchValue] = React.useState("");
-  const [openModal, setOpenModal] = React.useState(false);
 
   const completedTodosText = completedTodos.filter(
     (todo) => todo.completed
@@ -123,7 +122,6 @@ function useTodos() {
   };
 
   const deleteTodo = (todoId, todoCompleted) => {
-    let todoIndex;
     if (todoCompleted) {
       saveCompletedTodos((prevTodos) => prevTodos.filter(todo => todo.id !== todoId));
     } else {

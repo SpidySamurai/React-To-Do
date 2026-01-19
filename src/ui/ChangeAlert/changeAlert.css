@@ -12,11 +12,11 @@
   align-items: center;
   width: auto;
   padding: 1rem;
-  color: white;
+  color: var(--color-white);
   font-weight: bold;
-  background-color: #442f7e;
+  background-color: var(--color-secondary);
   border: none;
-  border-radius: 0.8rem;
+  border-radius: var(--border-radius-md);
   outline: none;
   transition: 0.3s ease;
 }

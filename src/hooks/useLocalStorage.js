@@ -49,6 +49,7 @@ function useLocalStorage(itemName, initialValue) {
     return () => {
       clearTimeout(timeoutId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sincronizedItem]);
 
   const saveItem = (updateFunction) => {
