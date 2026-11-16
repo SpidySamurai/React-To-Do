@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "./static/css/main.b9f38990.css",
+    "main.js": "./static/js/main.7514868b.js",
+    "static/media/outfit-latin-700-normal.woff": "./static/media/outfit-latin-700-normal.fcf2fedfb77439c600e9.woff",
+    "static/media/outfit-latin-400-normal.woff": "./static/media/outfit-latin-400-normal.72f8b6c4166f1d2268cf.woff",
+    "static/media/outfit-latin-700-normal.woff2": "./static/media/outfit-latin-700-normal.3bc1d0d6a44adb0722c5.woff2",
+    "static/media/outfit-latin-400-normal.woff2": "./static/media/outfit-latin-400-normal.d5e5803d0c85b54aaaa1.woff2",
+    "static/media/outfit-latin-ext-700-normal.woff": "./static/media/outfit-latin-ext-700-normal.2624c44f479775dfcd3a.woff",
+    "static/media/outfit-latin-ext-400-normal.woff": "./static/media/outfit-latin-ext-400-normal.906838c3d2734b257465.woff",
+    "static/media/outfit-latin-ext-700-normal.woff2": "./static/media/outfit-latin-ext-700-normal.f4e1bd4cd841bc4bf47e.woff2",
+    "static/media/outfit-latin-ext-400-normal.woff2": "./static/media/outfit-latin-ext-400-normal.a15560ed108017192e3a.woff2",
+    "static/media/icon_edit.svg": "./static/media/icon_edit.db57e52c0adf4980bb99.svg",
+    "static/media/icon_trash_can.svg": "./static/media/icon_trash_can.a645b5045a97d99ec2f8.svg",
+    "index.html": "./index.html",
+    "static/media/icon_check--active.svg": "./static/media/icon_check--active.21e0d935feff96c48c4f.svg",
+    "static/media/icon_check.svg": "./static/media/icon_check.a03c08689ad589ace529.svg",
+    "main.b9f38990.css.map": "./static/css/main.b9f38990.css.map",
+    "main.7514868b.js.map": "./static/js/main.7514868b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b9f38990.css",
+    "static/js/main.7514868b.js"
+  ]
+}
